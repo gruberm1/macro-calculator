@@ -12,12 +12,14 @@ export function calculateCalories(personInfo) {
 
 export function getCalories(personInfo){
   return function(dispatch){
-    return calculateAPI.calculateCalories(personInfo)
-    .then(personCals => {
-      console.log("HERE", personInfo);
-      dispatch(calculateCaloriesSuccess(personCals))
+    return fetch('http://localhost:8080/calories?age='+personInfo.age+'&measurement='+personInfo.measurement+'&gender='+personInfo.gender+'&weight='+personInfo.weight+'&height='+personInfo.height+'&goal='+personInfo.goal)
+    .then(response => response.json())
+    .then(personInfo => {
+      console.log(personInfo)
+      dispatch(calculateCaloriesSuccess(personInfo))
     })
     .catch(error => {
+      console.log("ERROR!!!!", error);
       throw(error);
     });
   }

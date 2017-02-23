@@ -1,5 +1,4 @@
 import delay from './delay';
-import macro from './calculateMacros';
 
 class CourseApi {
 
@@ -25,7 +24,7 @@ class CourseApi {
         if (person.height === "") {
           reject("Please add valid height");
         }
-        
+
         if (person.measurement ==='lbs/inches' && person.gender ==='Female'){
           person.cals = (655 + ( 4.35 * person.weight ) + ( 4.7 * person.height ) - ( 4.7 * person.age )) * 1.5;
         } else if (person.measurement ==='kg/cms' && person.gender ==='Female'){

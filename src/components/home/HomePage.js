@@ -23,6 +23,12 @@ class HomePage extends React.Component {
     this.calculateCalories = this.calculateCalories.bind(this);
   }
 
+  componentWillReceiveProps(nextProp){
+    if (this.props.personInfo.cals !== nextProp.personInfo.cals){
+      this.setState({personInfo: Object.assign( {}, nextProp.personInfo)});
+    }
+  }
+
   updatePersonInfoState(event){
     const field = event.target.name;
     let personInfo = this.state.personInfo;
@@ -34,8 +40,11 @@ class HomePage extends React.Component {
     event.preventDefault();
       this.props.actions.getCalories(this.state.personInfo)
       .then(()=>{
+        console.log("CALS CALC STATE", this.state.personInfo)
         toastr.success("Plan calculated");
         this.setState({showCals: true});
+      }).catch((error) => {
+        toastr.error(error);
       })
 
   }
@@ -72,9 +81,16 @@ function mapStateToProps(state, ownProps){
     height:"",
     macros: {low: {}, high:{}, no: {}}
   };
-  return {
-    personInfo: personInfo
-  };
+
+  if (Object.keys(state.calculator).length === 0 && state.calculator.constructor === Object) {
+    return {
+      personInfo: personInfo
+    };
+  } else {
+    return {
+      personInfo: state.calculator
+    }
+  }
 }
 
 function mapDispatchToProps(dispatch){
