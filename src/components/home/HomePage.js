@@ -40,10 +40,10 @@ class HomePage extends React.Component {
     event.preventDefault();
       this.props.actions.getCalories(this.state.personInfo)
       .then(()=>{
-        console.log("CALS CALC STATE", this.state.personInfo)
         toastr.success("Plan calculated");
         this.setState({showCals: true});
-      }).catch((error) => {
+      })
+      .catch((error) => {
         toastr.error(error);
       })
 
@@ -79,7 +79,12 @@ function mapStateToProps(state, ownProps){
     age: "",
     weight: "",
     height:"",
-    macros: {low: {}, high:{}, no: {}}
+    activity: "",
+    macros: {low: {}, high:{}, no: {}},
+    dietPlan: {
+      name: "",
+      diet:[]
+    }
   };
 
   if (Object.keys(state.calculator).length === 0 && state.calculator.constructor === Object) {

@@ -1,72 +1,81 @@
 import React from 'react';
+import MacroCyleTable from './MacroCyleTable';
 
 const MacroCyle = ({personInfo}) => {
-
+  let rest = personInfo.cals - 500;
   return (
+    <div>
       <div className="row">
-        <table className="col-md-12 table">
-          <thead>
-            <tr>
-              <th className ="text-center">Day</th>
-              <th className ="text-center">Protein</th>
-              <th className ="text-center">Carb</th>
-              <th className ="text-center">Fat</th>
-              <th className ="text-center">Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className ="text-center">Monday</td>
-              <td className ="text-center">{personInfo.macros.low.protein}</td>
-              <td className ="text-center">{personInfo.macros.low.carb}</td>
-              <td className ="text-center">{personInfo.macros.low.fat}</td>
-              <td className ="text-center">Low Carb</td>
-            </tr>
-            <tr>
-              <td className ="text-center">Tuesday</td>
-              <td className ="text-center">{personInfo.macros.low.protein}</td>
-              <td className ="text-center">{personInfo.macros.low.carb}</td>
-              <td className ="text-center">{personInfo.macros.low.fat}</td>
-              <td className ="text-center">Low Carb</td>
-            </tr>
-            <tr>
-              <td className ="text-center">Wednesday</td>
-              <td className ="text-center">{personInfo.macros.high.protein}</td>
-              <td className ="text-center">{personInfo.macros.high.carb}</td>
-              <td className ="text-center">{personInfo.macros.high.fat}</td>
-              <td className ="text-center">High Carb</td>
-            </tr>
-            <tr>
-              <td className ="text-center">Thursday</td>
-              <td className ="text-center">{personInfo.macros.low.protein}</td>
-              <td className ="text-center">{personInfo.macros.low.carb}</td>
-              <td className ="text-center">{personInfo.macros.low.fat}</td>
-              <td className ="text-center">Low Carb</td>
-            </tr>
-            <tr>
-              <td className ="text-center">Friday</td>
-              <td className ="text-center">{personInfo.macros.low.protein}</td>
-              <td className ="text-center">{personInfo.macros.low.carb}</td>
-              <td className ="text-center">{personInfo.macros.low.fat}</td>
-              <td className ="text-center">Low Carb</td>
-            </tr>
-            <tr>
-              <td className ="text-center">Saturday</td>
-              <td className ="text-center">{personInfo.macros.high.protein}</td>
-              <td className ="text-center">{personInfo.macros.high.carb}</td>
-              <td className ="text-center">{personInfo.macros.high.fat}</td>
-              <td className ="text-center">High Carb</td>
-            </tr>
-            <tr>
-              <td className ="text-center">Sunday</td>
-              <td className ="text-center">{personInfo.macros.no.protein}</td>
-              <td className ="text-center">{personInfo.macros.no.carb}</td>
-              <td className ="text-center">{personInfo.macros.no.fat}</td>
-              <td className ="text-center">Rest</td>
-            </tr>
-          </tbody>
-          </table>
+        <div className="col-md-2 col-md-offset-2 text-center">
+          <h3 className="table-title">DAY</h3>
         </div>
+        <div className="col-md-2 text-center">
+          <h3 className="table-title">CALORIES</h3>
+        </div>
+        <div className="col-md-2 text-center">
+          <h3 className="table-title">MACROS</h3>
+        </div>
+        <div className="col-md-2 text-center">
+          <h3 className="table-title">TYPE</h3>
+        </div>
+      </div>
+      <MacroCyleTable
+        day="MONDAY"
+        style="row"
+        cals={personInfo.cals}
+        protein={personInfo.macros.low.protein}
+        carb={personInfo.macros.low.carb}
+        fat={personInfo.macros.low.fat}
+        type="LOW CARB"/>
+      <MacroCyleTable
+        day="TUESDAY"
+        cals={personInfo.cals}
+        protein={personInfo.macros.high.protein}
+        carb={personInfo.macros.high.carb}
+        fat={personInfo.macros.high.fat}
+        style="row white"
+        type="HIGH CARB"/>
+      <MacroCyleTable
+        day="WEDNESDAY"
+        style="row"
+        cals={personInfo.cals}
+        protein={personInfo.macros.low.protein}
+        carb={personInfo.macros.low.carb}
+        fat={personInfo.macros.low.fat}
+        type="LOW CARB"/>
+      <MacroCyleTable
+        day="THURSDAY"
+        cals={personInfo.cals}
+        protein={personInfo.macros.low.protein}
+        carb={personInfo.macros.low.carb}
+        fat={personInfo.macros.low.fat}
+        style="row white"
+        type="LOW CARB"/>
+      <MacroCyleTable
+        style="row"
+        day="FRIDAY"
+        cals={personInfo.cals}
+        protein={personInfo.macros.high.protein}
+        carb={personInfo.macros.high.carb}
+        fat={personInfo.macros.high.fat}
+        type="HIGH CARB"/>
+      <MacroCyleTable
+        day="SATURDAY"
+        cals={personInfo.cals}
+        protein={personInfo.macros.low.protein}
+        carb={personInfo.macros.low.carb}
+        fat={personInfo.macros.low.fat}
+        style="row white"
+        type="LOW CARB"/>
+        <MacroCyleTable
+          style="row"
+          day="SUNDAY"
+          cals={rest}
+          protein={personInfo.macros.no.protein}
+          carb={personInfo.macros.no.carb}
+          fat={personInfo.macros.no.fat}
+          type="REST"/>
+    </div>
   );
 };
 

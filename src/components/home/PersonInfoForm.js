@@ -6,11 +6,11 @@ const PersonInfoForm = ({personInfo, onSave, onChange, saving, errors}) => {
   return (
     <div className="row">
       <form className ='col-md-4 col-md-offset-4'>
-        <h1>Macro Calculator</h1><hr />
+        <h1 className="title">MACRO CALCULATOR</h1>
 
         <SelectInput
           name="gender"
-          label="Gender"
+          label="GENDER"
           width="col-md-6"
           value={personInfo.gender}
           defaultOption="Select Gender"
@@ -18,52 +18,66 @@ const PersonInfoForm = ({personInfo, onSave, onChange, saving, errors}) => {
           onChange={onChange}
           error={errors.gender}/>
 
+          <TextInput
+            name="age"
+            label="AGE"
+            width="col-md-6"
+            value={personInfo.age || ''}
+            onChange={onChange}
+            error={errors.age}/>
+
         <SelectInput
           name="measurement"
-          label="Measurement System"
+          label="UNITS"
           width="col-md-6"
           value={personInfo.system}
-          defaultOption="Select Measurement System"
+          defaultOption="SELECT UNITS"
           options={["kg/cms", "lbs/inches"]}
           onChange={onChange}
           error={errors.gender}/>
 
+          <TextInput
+            name="weight"
+            label="WEIGHT"
+            width="col-md-6"
+            value={personInfo.weight || ''}
+            onChange={onChange}
+            error={errors.weight}/>
+
         <SelectInput
           name="goal"
-          label="Goal"
-          width="col-md-12"
+          label="GOAL"
+          width="col-md-6"
           value={personInfo.goal}
           defaultOption="Select Goal"
           options={["Lose Fat", "Build Muscle"]}
           onChange={onChange}
           error={errors.goal}/>
 
-        <TextInput
-          name="age"
-          label="Age"
-          value={personInfo.age || ''}
-          onChange={onChange}
-          error={errors.age}/>
-
-        <TextInput
-          name="weight"
-          label="Weight"
-          value={personInfo.weight || ''}
-          onChange={onChange}
-          error={errors.weight}/>
 
         <TextInput
           name="height"
-          label="Height"
+          label="HEIGHT"
+          width="col-md-6"
           value={personInfo.height || ''}
           onChange={onChange}
           error={errors.height}/>
 
+          <SelectInput
+            name="activity"
+            label="ACTIVITY LEVEL"
+            width="col-md-12"
+            value={personInfo.activity}
+            defaultOption="Select Activity Level"
+            options={["I DO NOTHING", "1-2 DAYS A WEEK", "3-4 DAYS A WEEK", "5-7 DAYS A WEEK"]}
+            onChange={onChange}
+            error={errors.goal}/>
+
         <input
           type="submit"
           disabled={saving}
-          value="Calculate"
-          className="btn btn-primary"
+          value="CALCULATE"
+          className="btn-calculate col-md-10 col-md-offset-1"
           onClick={onSave}/>
       </form>
     </div>
